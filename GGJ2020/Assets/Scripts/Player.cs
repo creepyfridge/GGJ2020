@@ -15,17 +15,26 @@ public class Player : MonoBehaviour
     Vector3 lastDirection = new Vector3();
     public CharacterController pController;
     const float SPEED = 5f;
-    float dashSpeed;
+    float m_SpeedBoost = 0f;
 
     bool isDashing = false;
-    float dashTimer = 3f;
+    float dashTimer = 0;
+    const float DASH_TIMER = 3f;
+
+    State m_CurrentState;
+
+    enum State
+    {
+        Moving,
+        Dashing,
+        Idle
+    };
     // Start is called before the first frame update
     void Start()
     {
         m_Direction = Vector3.zero;
         m_Velocity = 0f;
-        dashSpeed = SPEED * 3;
-        
+        m_CurrentState = State.Idle;
     }
 
     // Update is called once per frame
@@ -35,43 +44,74 @@ public class Player : MonoBehaviour
         Vector3 camForward = pCamera.transform.forward;
         camForward.y = 0;
         camForward = Vector3.Normalize(camForward);
-        if (InputManager.getMoveForward())
-        {
-            m_Direction += camForward *1;
-        }
-        if (InputManager.getMoveLeft())
-        {
-            m_Direction += -(pCamera.transform.right) * 1;
-        }
-        if (InputManager.getMoveBack())
-        {
-            m_Direction += -(camForward * 1);
-        }
-        if (InputManager.getMoveRight())
-        {
-            m_Direction += pCamera.transform.right * 1;
-        }
-
-        m_Direction = Vector3.Normalize(m_Direction);
-
         m_Direction.y -= m_Gravity * Time.deltaTime;
         m_Direction.y += lastDirection.y;
-        if(isGrounded())
+        switch (m_CurrentState)
+        {
+            case State.Idle:
+                m_Direction = Vector3.zero;
+                
+                
+                getInput();
+                break;
+
+            case State.Moving:
+
+                m_Direction = Vector3.Normalize(m_Direction);
+                
+                if (InputManager.getDashDown())
+                {
+                    Dash();
+                }
+                if (InputManager.getMoveForward())
+                {
+                    m_Direction += camForward * 1;
+                }
+                if (InputManager.getMoveLeft())
+                {
+                    m_Direction += -(pCamera.transform.right) * 1;
+                }
+                if (InputManager.getMoveBack())
+                {
+                    m_Direction += -(camForward * 1);
+                }
+                if (InputManager.getMoveRight())
+                {
+                    m_Direction += pCamera.transform.right * 1;
+                }
+                pController.Move((m_Direction * (m_Speed + m_SpeedBoost) * Time.deltaTime));
+                break;
+            case State.Dashing:
+                Debug.Log("In the dashing state");
+                m_Direction = lastDirection;
+                if (m_SpeedBoost > 0)
+                {
+                    m_SpeedBoost -= 0.5f;
+                    if (m_SpeedBoost < 0)
+                    {
+                        m_SpeedBoost = 0;
+                    }
+                }
+                else
+                {
+                    m_CurrentState = State.Moving;
+                    Debug.Log("Setting state to Moving");
+                }
+                pController.Move((m_Direction * (m_Speed + m_SpeedBoost) * Time.deltaTime));
+                break;
+        }
+        
+        if (dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+        }
+        if (isGrounded())
         {
             m_Direction.y = 0;
         }
-
-        if(InputManager.getDashDown())
-        {
-            if(!isDashing)
-            {
-
-            }
-        }
-        pController.Move((m_Direction * m_Speed) * Time.deltaTime);
+        
         lastDirection = m_Direction;
     }
-
 
     public bool isGrounded()
     {
@@ -83,8 +123,34 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    private void dash()
+    public void getInput()
     {
-        //m_Speed += 
+        if(InputManager.getMoveForward() == true || InputManager.getMoveLeft() == true || InputManager.getMoveRight() == true || InputManager.getMoveBack() == true)
+        {
+            m_CurrentState = State.Moving;
+        }
+        if (InputManager.getDashDown())
+        {
+            if (m_Direction == Vector3.zero)
+            {
+                m_Direction = transform.forward;
+                lastDirection = m_Direction;
+            }
+            Dash();
+        }
+
     }
+
+    private void Dash()
+    {
+        if (dashTimer <= 0)
+        {
+            
+            dashTimer = DASH_TIMER;
+            m_SpeedBoost = m_Speed * 5;
+            m_CurrentState = State.Dashing;
+            Debug.Log("Switching to Dash State");
+        }
+    }
+
 }
