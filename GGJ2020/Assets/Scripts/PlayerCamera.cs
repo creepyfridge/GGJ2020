@@ -11,6 +11,7 @@ public class PlayerCamera : MonoBehaviour
     }
 
     public Transform _player;
+    public Transform _cameraPivot;
     public Transform _cameraTarget;
     public float _lerpAmount = 1.75f;
 
@@ -21,5 +22,7 @@ public class PlayerCamera : MonoBehaviour
     {
         transform.position = transform.position + ((_cameraTarget.position - transform.position) * _lerpAmount * Time.deltaTime);
         transform.forward = _player.position - transform.position;
+
+        Debug.Log(InputManager.getMouse());
     }
 }
