@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     Vector3 lastDirection = new Vector3();
     public CharacterController pController;
     const float SPEED = 5f;
-    float dashSpeed; 
+    float dashSpeed;
+
+    bool isDashing = false;
+    float dashTimer = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +63,10 @@ public class Player : MonoBehaviour
 
         if(InputManager.getDashDown())
         {
-            
+            if(!isDashing)
+            {
+
+            }
         }
         pController.Move((m_Direction * m_Speed) * Time.deltaTime);
         lastDirection = m_Direction;
