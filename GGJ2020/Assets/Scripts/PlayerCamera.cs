@@ -31,5 +31,8 @@ public class PlayerCamera : MonoBehaviour
 
         pivot.y += InputManager.getMouse().x * _mouseSensitivity * Time.deltaTime;
         _cameraPivot.rotation = Quaternion.Euler(pivot);
+        
+
+        _cameraPivot.transform.position = _player.transform.position;
     }
 }
