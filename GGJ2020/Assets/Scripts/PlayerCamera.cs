@@ -10,11 +10,16 @@ public class PlayerCamera : MonoBehaviour
         
     }
 
-    public GameObject _player;
+    public Transform _player;
+    public Transform _cameraTarget;
+    public float _lerpAmount = 1.75f;
+
+    public float _mouseSensitivity = 1.0f;
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = transform.position + ((_cameraTarget.position - transform.position) * _lerpAmount * Time.deltaTime);
+        transform.forward = _player.position - transform.position;
     }
 }
