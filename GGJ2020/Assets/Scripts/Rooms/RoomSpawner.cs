@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,20 @@ public class RoomSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int i = 0;
         do
         {
             spawnRoom();
-            //i++;
-        } while (_rooms.Count < _numRoomsInFloor && i < 2);
+        } while (_rooms.Count < _numRoomsInFloor);
+
+        removeDoors();
+    }
+
+    void removeDoors()
+    {
+        for(int i = 0; i < _rooms.Count; i++)
+        {
+            _rooms[i].removeDoors();
+        }
     }
 
     public List<Room> _rooms;
@@ -23,12 +32,12 @@ public class RoomSpawner : MonoBehaviour
     void spawnRoom()
     {
         //pick spawnDoor
-        int roomId = Random.Range(0, _rooms.Count);
+        int roomId = pseudoRandomID();
         int wallID = _rooms[roomId].getPotentialWall();
         int doorID = _rooms[roomId]._walls[wallID].getPotentialDoor();
 
         //pick new Room
-        GameObject newRoomObject = GameObject.Instantiate(_roomPrefabs[Random.Range(0, _roomPrefabs.Count)]);
+        GameObject newRoomObject = GameObject.Instantiate(_roomPrefabs[UnityEngine.Random.Range(0, _roomPrefabs.Count)]);
         newRoomObject.transform.rotation = Quaternion.Euler(Vector3.zero);
 
         Room newRoom = newRoomObject.GetComponentInChildren<Room>();
@@ -46,7 +55,7 @@ public class RoomSpawner : MonoBehaviour
 
         //place/rotate the room
         bool isColliding = false;
-        for (int i = 0; i < 360; i+=90)
+        for (int i = 0; i < 360; i += 90)
         {
             pivot.transform.rotation = Quaternion.Euler(new Vector3(0.0f, (float)i, 0.0f));
             pivot.transform.position = _rooms[roomId]._walls[wallID]._doors[doorID].transform.position;
@@ -55,14 +64,14 @@ public class RoomSpawner : MonoBehaviour
 
             for (int j = 0; j < _rooms.Count && !isColliding; j++)
             {
-                if(newRoom.isColliding(_rooms[j]))
+                if (newRoom.isColliding(_rooms[j]))
                 {
                     isColliding = true;
                 }
             }
         }
 
-        if(isColliding)
+        if (isColliding)
         {
             GameObject.Destroy(pivot);
         }
@@ -70,6 +79,31 @@ public class RoomSpawner : MonoBehaviour
         {
             _rooms.Add(newRoom);
             _rooms[roomId].setActiveDoor(wallID, doorID);
+
+            sortRooms();
         }
+    }
+    void sortRooms()
+    {
+        int inPlace = 0;
+        while (_rooms.Count - inPlace > 1)
+        {
+            for (int i = 1; i < _rooms.Count - inPlace - 1; i++)
+            {
+                if ((_rooms[0].transform.position - _rooms[i].transform.position).magnitude >
+                    (_rooms[0].transform.position - _rooms[i + 1].transform.position).magnitude)
+                {
+                    Room temp = _rooms[i];
+                    _rooms[i] = _rooms[i + 1];
+                    _rooms[i + 1] = temp;
+                }
+            }
+            inPlace++;
+        }
+    }    
+
+    int pseudoRandomID()
+    {
+        return UnityEngine.Random.Range((int)(_rooms.Count/3.0f), _rooms.Count);
     }
 }

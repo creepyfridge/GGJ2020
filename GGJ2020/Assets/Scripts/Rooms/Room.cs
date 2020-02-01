@@ -74,7 +74,7 @@ public class Room : MonoBehaviour
         _walls[wallID].setActiveDoor(doorID);
         _walls.RemoveAt(wallID);
     }
-
+    /*
     private void Update()
     {
         Vector3 corner1 = new Vector3(_footprint.x, 0, _footprint.y);
@@ -84,5 +84,13 @@ public class Room : MonoBehaviour
         Debug.DrawLine(corner1, corner1 + new Vector3(0, 0, _footprint.height), Color.red);
         Debug.DrawLine(corner2, corner2 - new Vector3(_footprint.width, 0, 0), Color.red);
         Debug.DrawLine(corner2, corner2 - new Vector3(0, 0, _footprint.height), Color.red);
+    }
+    */
+    public void removeDoors()
+    {
+        for (int i = 0; i < _walls.Count; i++)
+        {
+            _walls[i].removeDoors();
+        }
     }
 }

@@ -37,4 +37,12 @@ public class Wall : MonoBehaviour
     {
         return Random.Range(0, _doors.Count);
     }
+
+    public void removeDoors()
+    {
+        for(int i = 0; i < _doors.Count; i++)
+        {
+            _doors[i].hideModel();
+        }
+    }
 }
