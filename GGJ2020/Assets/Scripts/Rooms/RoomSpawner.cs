@@ -81,8 +81,6 @@ public class RoomSpawner : MonoBehaviour
             _rooms.Add(newRoom);
             _rooms[roomId].setActiveDoor(wallID, doorID);
 
-            //NavMeshBuilder.BuildNavMeshData()
-
             sortRooms();
         }
     }

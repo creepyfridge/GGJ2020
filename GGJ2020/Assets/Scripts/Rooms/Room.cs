@@ -14,6 +14,8 @@ public class Room : MonoBehaviour
     public List<Wall> _walls;
     bool _playerIsInside = false;
 
+    public List<EnemySpawn> enemySpawns;
+
     public Transform[] _corners;
     Rect _footprint;
     

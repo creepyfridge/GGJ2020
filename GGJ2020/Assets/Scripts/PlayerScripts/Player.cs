@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
     {
         GameObject obj = collision.gameObject;
 
-        if(obj.GetType() == typeof( EnemyBase))
+        //if(obj.GetType() == typeof( EnemyBase))
         {
 
         }
