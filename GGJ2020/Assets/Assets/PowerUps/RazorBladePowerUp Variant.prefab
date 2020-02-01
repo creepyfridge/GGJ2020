@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!65 &5483808613669026399
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827000283674780377}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 82.88, y: 2.19, z: 4.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6047478282370687284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827000283674780377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b09601bddd1fb408d1510851b2be56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7477259335468392765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573882651869793534, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123801001921872868, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+        type: 3}
+      propertyPath: m_Name
+      value: RazorBladePowerUp Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47f2ba9e3e4f4b541ad8038eb744a50a, type: 3}
+--- !u!1 &1827000283674780377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9123801001921872868, guid: 47f2ba9e3e4f4b541ad8038eb744a50a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7477259335468392765}
+  m_PrefabAsset: {fileID: 0}

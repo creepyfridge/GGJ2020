@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!65 &8552827478780572840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826416001927824123}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.57, y: 2, z: 3.51}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5656261166306861729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826416001927824123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10549807980a5dd45a4190635077188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7492750585655854719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2127425684625507460, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_Name
+      value: PencilPowerUp Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7138772
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7002709
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -91.102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890717603128707328, guid: dfdad5b02e7b9d441b853f69811a061d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dfdad5b02e7b9d441b853f69811a061d, type: 3}
+--- !u!1 &8826416001927824123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2127425684625507460, guid: dfdad5b02e7b9d441b853f69811a061d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7492750585655854719}
+  m_PrefabAsset: {fileID: 0}
