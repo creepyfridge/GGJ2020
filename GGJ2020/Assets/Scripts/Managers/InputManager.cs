@@ -91,7 +91,7 @@ public static class InputManager
     }
     #endregion
     #region Dash
-    static KeyCode _dash = KeyCode.Space;
+    static KeyCode _dash = KeyCode.LeftShift;
     public static bool getDash()
     {
         return Input.GetKey(_dash);
@@ -105,6 +105,23 @@ public static class InputManager
     public static bool getDashDown()
     {
         return Input.GetKeyDown(_dash);
+    }
+    #endregion
+    #region Jump
+    static KeyCode _jump = KeyCode.Space;
+    public static bool getJump()
+    {
+        return Input.GetKey(_jump);
+    }
+
+    public static bool getJumpUp()
+    {
+        return Input.GetKeyUp(_jump);
+    }
+
+    public static bool getJumpDown()
+    {
+        return Input.GetKeyDown(_jump);
     }
     #endregion
     #endregion

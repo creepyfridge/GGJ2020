@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7573882651869793534}
   - component: {fileID: 5163049504605805080}
   - component: {fileID: 7517718560119171707}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RazorBlade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
