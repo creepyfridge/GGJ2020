@@ -363,3 +363,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54039e7fbbefc24408bc6658ad50c8a4, type: 3}
+--- !u!1 &2096670683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3034062546646718223, guid: 54039e7fbbefc24408bc6658ad50c8a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2096670682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2096670684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096670683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b867a4f37f363c4fbe9570c267c0a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!143 &2096670685
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096670683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
