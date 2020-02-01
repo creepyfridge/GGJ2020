@@ -10,6 +10,8 @@ public class PlayerCamera : MonoBehaviour
         
     }
 
+    public GameObject _player;
+
     // Update is called once per frame
     void Update()
     {
