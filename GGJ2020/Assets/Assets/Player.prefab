@@ -129,8 +129,8 @@ MonoBehaviour:
   _player: {fileID: 3034062547118507508}
   _cameraPivot: {fileID: 2780256740587677211}
   _cameraTarget: {fileID: 1625972330}
-  _lerpAmount: 3.5
-  _mouseSensitivity: 1
+  _lerpAmount: 11
+  _mouseSensitivity: 5
 --- !u!1 &1625972329
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b867a4f37f363c4fbe9570c267c0a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 1.02
-  pCamera: {fileID: 0}
+  m_Speed: 5
+  pCamera: {fileID: 1174587020}
   pController: {fileID: 1222913594}
 --- !u!1 &3034062547185178561
 GameObject:
