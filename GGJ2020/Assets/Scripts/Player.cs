@@ -14,13 +14,15 @@ public class Player : MonoBehaviour
     private float m_Gravity = 3.4f;
     Vector3 lastDirection = new Vector3();
     public CharacterController pController;
+    const float SPEED = 5f;
+    float dashSpeed; 
     // Start is called before the first frame update
     void Start()
     {
         m_Direction = Vector3.zero;
         m_Velocity = 0f;
-        m_Speed = 5f;
-
+        dashSpeed = SPEED * 3;
+        
     }
 
     // Update is called once per frame
@@ -30,19 +32,19 @@ public class Player : MonoBehaviour
         Vector3 camForward = pCamera.transform.forward;
         camForward.y = 0;
         camForward = Vector3.Normalize(camForward);
-        if (Input.GetKey(KeyCode.W))
+        if (InputManager.getMoveForward())
         {
             m_Direction += camForward *1;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (InputManager.getMoveLeft())
         {
             m_Direction += -(pCamera.transform.right) * 1;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (InputManager.getMoveBack())
         {
             m_Direction += -(camForward * 1);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (InputManager.getMoveRight())
         {
             m_Direction += pCamera.transform.right * 1;
         }
@@ -54,6 +56,11 @@ public class Player : MonoBehaviour
         if(isGrounded())
         {
             m_Direction.y = 0;
+        }
+
+        if(InputManager.getDashDown())
+        {
+            
         }
         pController.Move((m_Direction * m_Speed) * Time.deltaTime);
         lastDirection = m_Direction;
@@ -68,5 +75,10 @@ public class Player : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void dash()
+    {
+        //m_Speed += 
     }
 }
