@@ -27,7 +27,9 @@ public class Player : MonoBehaviour
     public float m_JumpBoost = 0f;
 
     bool isDashing = false;
-
+    bool m_IgnoreGrounded = false;
+    int m_IgnoreFrames = 30;
+    int m_FrameCount = 0;
     private State m_CurrentState;
     enum State
     {
@@ -55,8 +57,8 @@ public class Player : MonoBehaviour
             camForward = Vector3.Normalize(camForward);
             if(m_Velocity != Vector3.zero)
             {
-                pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime);
-                pController.transform.forward = m_Direction;
+                pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
+               //pController.transform.forward = m_Direction;
             }
 
             //Vector3 dir = Vector3.zero;
@@ -88,7 +90,19 @@ public class Player : MonoBehaviour
             m_Direction = Vector3.Normalize(m_Direction);
 
             m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
-            m_Velocity.y = 0;
+            if(!m_IgnoreGrounded)
+            {
+                m_Velocity.y = 0;
+            }
+            else
+            {
+                m_FrameCount++;
+                if(m_FrameCount > m_IgnoreFrames)
+                {
+                    m_IgnoreGrounded = false;
+                    m_FrameCount = 0;
+                }
+            } 
 
             if (InputManager.getJumpDown())
             {
@@ -100,7 +114,6 @@ public class Player : MonoBehaviour
         {
             m_Velocity.y -= m_Gravity * Time.deltaTime;
         }
-        Debug.Log(m_Velocity.y);
         if (m_DashBoost > 0)
         {
             m_DashBoost -= 2f;
@@ -124,6 +137,7 @@ public class Player : MonoBehaviour
     {
         if(isGrounded())
         {
+            m_IgnoreGrounded = true;
             m_Velocity.y = 0;
             m_Velocity.y += m_JumpVelocity;
         }
