@@ -218,7 +218,8 @@ MonoBehaviour:
   _player: {fileID: 1254106754}
   _cameraPivot: {fileID: 831100722405031811}
   _cameraTarget: {fileID: 3250997988473096178}
-  _lerpAmount: 11
+  _lerpMove: 0.0004
+  _lerpLook: 0.002
   _mouseSensitivity: 5
 --- !u!1 &3250997988371892765
 GameObject:
@@ -276,14 +277,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3250997988473096177}
-  m_LocalRotation: {x: 0.072451346, y: -0.0000000018626447, z: 0.0000000010477377,
-    w: 0.99737203}
-  m_LocalPosition: {x: 0, y: -0.06, z: -3.33}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.59, z: -4.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 831100722405031811}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.31, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8385878617254731253
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,8 +307,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8385878617254731253}
-  m_LocalRotation: {x: -0, y: 0.9997333, z: -0, w: 0.023096127}
-  m_LocalPosition: {x: 13.065138, y: 2.2412612, z: 4.494789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3250997988473096178}

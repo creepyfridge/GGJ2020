@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         switch (m_CurrentState)
         {
             case State.Idle:
-                Debug.Log("Idle state");
+                //Debug.Log("Idle state");
                 m_Velocity = Vector3.zero;
                 getInput();
                 break;
@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
     {
         GameObject obj = collision.gameObject;
 
-        if(obj.GetType() == typeof( EnemyBase))
+        //if(obj.GetType() == typeof( EnemyBase))
         {
 
         }
