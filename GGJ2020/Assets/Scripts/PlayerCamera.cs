@@ -23,6 +23,13 @@ public class PlayerCamera : MonoBehaviour
         transform.position = transform.position + ((_cameraTarget.position - transform.position) * _lerpAmount * Time.deltaTime);
         transform.forward = _player.position - transform.position;
 
-        Debug.Log(InputManager.getMouse());
+
+
+        Vector3 pivot = _cameraPivot.rotation.eulerAngles;
+        pivot.x = 0.0f;
+        pivot.z = 0.0f;
+
+        pivot.y += InputManager.getMouse().x * _mouseSensitivity * Time.deltaTime;
+        _cameraPivot.rotation = Quaternion.Euler(pivot);
     }
 }

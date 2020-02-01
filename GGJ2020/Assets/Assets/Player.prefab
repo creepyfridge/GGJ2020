@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 3034062547118507508}
+  _cameraPivot: {fileID: 2780256740587677211}
   _cameraTarget: {fileID: 1625972330}
   _lerpAmount: 3.5
   _mouseSensitivity: 1
