@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoomSpawner : MonoBehaviour
 {
@@ -79,6 +80,8 @@ public class RoomSpawner : MonoBehaviour
         {
             _rooms.Add(newRoom);
             _rooms[roomId].setActiveDoor(wallID, doorID);
+
+            //NavMeshBuilder.BuildNavMeshData()
 
             sortRooms();
         }
