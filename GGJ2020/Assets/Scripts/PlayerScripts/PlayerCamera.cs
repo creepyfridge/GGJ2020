@@ -17,6 +17,8 @@ public class PlayerCamera : MonoBehaviour
     public float _lerpLook;
     public float _mouseSensitivity = 1.0f;
 
+    public float _cameraCollisionOfset = 0.3f;
+
     // Update is called once per frame
     void Update()
     {
@@ -33,5 +35,11 @@ public class PlayerCamera : MonoBehaviour
 
         smooth = smooth = 1.0f - Mathf.Pow(_lerpLook, Time.deltaTime);
         transform.forward = Vector3.Lerp(transform.forward, (_player.position - transform.position).normalized, smooth);
+
+        RaycastHit hit;
+        if(Physics.Raycast(_player.position, (transform.position - _player.position), out hit, (_cameraTarget.position - _player.position).magnitude))
+        {
+            transform.position = hit.point + ((_player.position - transform.position) * _cameraCollisionOfset);
+        }
     }
 }
