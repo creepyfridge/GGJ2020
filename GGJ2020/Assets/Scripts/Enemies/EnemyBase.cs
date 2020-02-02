@@ -10,8 +10,6 @@ public class EnemyBase : MonoBehaviour
     {
         _agent.SetDestination(_player.position);
         _lastPlayerPos = _player.position;
-        
-
     }
 
     enum states

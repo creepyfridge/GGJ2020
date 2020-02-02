@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
             }
         }
         
-
         switch (m_CurrentState)
         {
             case State.Idle:

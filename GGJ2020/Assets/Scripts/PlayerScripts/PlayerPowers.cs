@@ -15,6 +15,11 @@ public class PlayerPowers : MonoBehaviour
         m_Player.addSpeed(4f);
 
         m_Wheels.SetActive(true);
+
+        Vector3 scale = m_Wheels.transform.localScale;
+        scale = scale * 1.1f;
+        m_Wheels.transform.localScale = scale;
+
     }
 
     public void addRazor()
