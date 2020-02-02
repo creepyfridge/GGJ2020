@@ -1285,24 +1285,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4234046707664251395, guid: 1a03154fb95534e498c125d8ffac80e4,
-        type: 3}
-      propertyPath: m_Pencil
-      value: 
-      objectReference: {fileID: 6575484512546537737, guid: 2c9a14923f70c6d4f8fd90e46f9571fe,
-        type: 3}
-    - target: {fileID: 4234046707664251395, guid: 1a03154fb95534e498c125d8ffac80e4,
-        type: 3}
-      propertyPath: m_Razor
-      value: 
-      objectReference: {fileID: 4911416617097157932, guid: af06b785d828da7439ddc808bcaf2140,
-        type: 3}
-    - target: {fileID: 4234046707664251395, guid: 1a03154fb95534e498c125d8ffac80e4,
-        type: 3}
-      propertyPath: m_Spring
-      value: 
-      objectReference: {fileID: 9122539213614779465, guid: 70686ab99e8fce6409faf33fc6552575,
-        type: 3}
     - target: {fileID: 4234046708034283276, guid: 1a03154fb95534e498c125d8ffac80e4,
         type: 3}
       propertyPath: m_LocalPosition.x
