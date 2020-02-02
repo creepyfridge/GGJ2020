@@ -249,10 +249,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Player: {fileID: 4234046707664251394}
   m_Wheels: {fileID: 1428151880121210110}
-  m_Razor: {fileID: -927199367670048503, guid: 9d78858750fb0c943bf6e84645727db2, type: 3}
-  m_Pencil: {fileID: -927199367670048503, guid: 8f014ba34ab87f547ae491b3387142de,
+  m_Razor: {fileID: 4911416617097157932, guid: af06b785d828da7439ddc808bcaf2140, type: 3}
+  m_Pencil: {fileID: 6575484512546537737, guid: 2c9a14923f70c6d4f8fd90e46f9571fe,
     type: 3}
-  m_Spring: {fileID: 2244611689627672686, guid: 70686ab99e8fce6409faf33fc6552575,
+  m_Spring: {fileID: 9122539213614779465, guid: 70686ab99e8fce6409faf33fc6552575,
     type: 3}
 --- !u!136 &2117768525
 CapsuleCollider:
