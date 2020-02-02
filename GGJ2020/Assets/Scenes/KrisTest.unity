@@ -464,41 +464,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 923426421735773254, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -76.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 923426421735773254, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -110.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 923426421735773254, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2218240597113181806, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4318289101550439779, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 75.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 4318289101550439779, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4318289101550439779, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 110.56
-      objectReference: {fileID: 0}
     - target: {fileID: 5572556246661115244, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -554,17 +519,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5727003195836426442, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_LayerMask.m_Bits
-      value: 51
-      objectReference: {fileID: 0}
-    - target: {fileID: 5727003195836426442, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: d8644f26bc4f8ca43954ab30c16e7b08,
-        type: 2}
     - target: {fileID: 8867283897659449214, guid: 27f6e9b48a0bbec41a259a2cb1e1fad4,
         type: 3}
       propertyPath: _enemySpawns.Array.data[0]
