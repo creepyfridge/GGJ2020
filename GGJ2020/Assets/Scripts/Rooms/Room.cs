@@ -66,11 +66,16 @@ public class Room : MonoBehaviour
         }
         else if (other.CompareTag("Enemy"))
         {
-            _enemyCount--;
-            if(_enemyCount == 0)
-            {
-                toggleDoorLocks();
-            }
+            
+        }
+    }
+
+    public void killEnemy()
+    {
+        _enemyCount--;
+        if (_enemyCount == 0)
+        {
+            toggleDoorLocks();
         }
     }
 
