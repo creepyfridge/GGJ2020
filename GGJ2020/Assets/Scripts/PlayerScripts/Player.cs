@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /**
  * Made by Zach Dubuc 
  * 
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
     float dashTimer = 0;
     const float DASH_TIMER = 3f;
     //Power up stats
-    public float m_AttackPower = 1f;
+    public int m_AttackPower = 1;
     public int m_Health = 100;
     public bool m_Armour = false;
     public float m_SpeedBoost = 0f;
@@ -49,6 +50,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(m_Health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
         if (isGrounded())
         {
             //get the cameras forward vector
@@ -168,13 +173,26 @@ public class Player : MonoBehaviour
             m_DashBoost =  50f;
         }
     }
+    public void knockback(Vector3 knockbackDir)
+    {
+        float timer = 2f;
+        m_Velocity = knockbackDir * 1.25f ;
+        m_Velocity.y += 0.25f;
+        while (timer > 0)
+        {
+            
+            pController.Move(m_Velocity * Time.deltaTime);
+            timer -= Time.deltaTime;
+        }
+        
+    }
 
     public void addSpeed(float speed)
     {
         m_SpeedBoost += speed;
     }
 
-    public void addAttackPower(float attackPower)
+    public void addAttackPower(int attackPower)
     {
         m_AttackPower += attackPower;
     }
@@ -189,14 +207,39 @@ public class Player : MonoBehaviour
         m_JumpBoost += amount;
     }
 
-   /* public void OnCollisionEnter(Collision collision)
+    public void takeDamage(Vector3 knockbackDir)
     {
-        GameObject obj = collision.gameObject;
+        m_Health -= 12;
+        knockback(knockbackDir);
+    }
 
-        //if(obj.GetType() == typeof( EnemyBase))
+    public int dealDamage()
+    {
+        if(isDashing)
         {
-
+            Debug.Log("Pear did " + m_AttackPower + " damage!");
+            return m_AttackPower;
         }
-    } */
+        return 0;
+        
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if (isDashing)
+            {
+                EnemyBase enemy = other.gameObject.GetComponent("EnemyBase") as EnemyBase;
+
+                if (enemy != null)
+                {
+                    enemy.takeDamage(m_AttackPower);
+                }
+            }
+        }
+        
+    } 
 
 }

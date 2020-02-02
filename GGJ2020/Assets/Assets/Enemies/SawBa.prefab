@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4848337670919144687}
   m_Layer: 0
   m_Name: SawBa
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   _minTimeBetweenAttacks: 1
   _attackTime: 0.5
   _damage: 10
+  _health: 10
   _saw: {fileID: 4848337671493381347}
   _sawRest: {fileID: 4848337670922749346}
   _sawAttack: {fileID: 4848337671909196494}
@@ -186,10 +187,11 @@ GameObject:
   - component: {fileID: 4848337671493381347}
   - component: {fileID: 4848337671493381356}
   - component: {fileID: 4848337671493381357}
-  - component: {fileID: 4848337671493381346}
+  - component: {fileID: 227247791}
+  - component: {fileID: 227247794}
   m_Layer: 0
   m_Name: saw
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4848337671493381344}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.048}
   m_LocalScale: {x: 0.7758599, y: 0.059531737, z: 0.7758599}
   m_Children: []
   m_Father: {fileID: 4848337670919144682}
@@ -254,20 +256,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &4848337671493381346
-CapsuleCollider:
+--- !u!64 &227247791
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4848337671493381344}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &227247794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848337671493381344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecfd4e4ba84ecaa41b4a81f5e951e4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4848337671909196495
 GameObject:
   m_ObjectHideFlags: 0
