@@ -52,10 +52,6 @@ public class Room : MonoBehaviour
         {
             _playerIsInside = true;
         }
-        else if(other.CompareTag("Enemy"))
-        {
-            _enemyCount++;
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -120,6 +116,7 @@ public class Room : MonoBehaviour
         for (int i = 0; i < _enemySpawns.Count; i++)
         {
             _enemySpawns[i].spawn();
+            _enemyCount++;
         }
 
         toggleDoorLocks();
