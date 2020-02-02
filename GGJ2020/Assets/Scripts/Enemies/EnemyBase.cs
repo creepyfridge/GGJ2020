@@ -55,7 +55,7 @@ public class EnemyBase : MonoBehaviour
             {
                 _Room.killEnemy();
             }
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         Debug.Log(_state);
         switch(_state)
