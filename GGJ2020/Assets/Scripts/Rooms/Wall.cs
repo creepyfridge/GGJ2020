@@ -11,6 +11,7 @@ public class Wall : MonoBehaviour
     }
 
     public List<Door> _doors;
+    public GameObject _blankWall;
 
     public bool hasPotentialDoor()
     {
@@ -31,6 +32,7 @@ public class Wall : MonoBehaviour
             else
                 _doors[i].showModel();
         }
+        _blankWall.SetActive(false);
     }
 
     public int getPotentialDoor()
