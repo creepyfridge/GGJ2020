@@ -14,7 +14,8 @@ public class Room : MonoBehaviour
     public List<Wall> _walls;
     bool _playerIsInside = false;
 
-    public List<EnemySpawn> enemySpawns;
+    public List<EnemySpawn> _enemySpawns;
+    int _enemyCount = 0;
 
     public Transform[] _corners;
     Rect _footprint;
@@ -51,6 +52,10 @@ public class Room : MonoBehaviour
         {
             _playerIsInside = true;
         }
+        else if(other.CompareTag("Enemy"))
+        {
+            _enemyCount++;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -58,6 +63,14 @@ public class Room : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _playerIsInside = false;
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            _enemyCount--;
+            if(_enemyCount == 0)
+            {
+                toggleDoorLocks();
+            }
         }
     }
 
@@ -74,25 +87,36 @@ public class Room : MonoBehaviour
     public void setActiveDoor(int wallID, int doorID)
     {
         _walls[wallID].setActiveDoor(doorID);
-        _walls.RemoveAt(wallID);
     }
-    /*
+    
     private void Update()
     {
-        Vector3 corner1 = new Vector3(_footprint.x, 0, _footprint.y);
-        Vector3 corner2 = new Vector3(_footprint.x + _footprint.width, 0, _footprint.y + _footprint.height);
-
-        Debug.DrawLine(corner1, corner1 + new Vector3(_footprint.width, 0, 0), Color.red);
-        Debug.DrawLine(corner1, corner1 + new Vector3(0, 0, _footprint.height), Color.red);
-        Debug.DrawLine(corner2, corner2 - new Vector3(_footprint.width, 0, 0), Color.red);
-        Debug.DrawLine(corner2, corner2 - new Vector3(0, 0, _footprint.height), Color.red);
+        
     }
-    */
+    
     public void removeDoors()
     {
         for (int i = 0; i < _walls.Count; i++)
         {
             _walls[i].removeDoors();
         }
+    }
+
+    public void toggleDoorLocks()
+    {
+        for (int i = 0; i < _walls.Count; i++)
+        {
+            _walls[i].toggleDoorLocks();
+        }
+    }
+
+    public void spawnEnemies()
+    {
+        for (int i = 0; i < _enemySpawns.Count; i++)
+        {
+            _enemySpawns[i].spawn();
+        }
+
+        toggleDoorLocks();
     }
 }

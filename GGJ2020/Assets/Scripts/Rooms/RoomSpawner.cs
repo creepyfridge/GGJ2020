@@ -80,7 +80,7 @@ public class RoomSpawner : MonoBehaviour
         {
             _rooms.Add(newRoom);
             _rooms[roomId].setActiveDoor(wallID, doorID);
-
+            newRoom.setActiveDoor(newWallID, newDoorID);
             sortRooms();
         }
     }

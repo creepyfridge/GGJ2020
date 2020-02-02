@@ -10,9 +10,14 @@ public class Laser : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public Room _room;
+
+    public void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            _room.spawnEnemies();
+            gameObject.SetActive(false);
+        }
     }
 }

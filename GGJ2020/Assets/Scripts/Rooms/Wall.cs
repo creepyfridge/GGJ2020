@@ -42,7 +42,16 @@ public class Wall : MonoBehaviour
     {
         for(int i = 0; i < _doors.Count; i++)
         {
-            _doors[i].hideModel();
+            if(_doors[i].isValidSpawn)
+                _doors[i].hideModel();
+        }
+    }
+
+    public void toggleDoorLocks()
+    {
+        for (int i = 0; i < _doors.Count; i++)
+        {
+            _doors[i].toggleLockDoor();
         }
     }
 }

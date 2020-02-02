@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         {
             m_Velocity.y -= m_Gravity * Time.deltaTime;
         }
-        Debug.Log(m_Velocity.y);
+
         if (m_DashBoost > 0)
         {
             m_DashBoost -= 2f;
