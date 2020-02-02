@@ -19,7 +19,9 @@ public class Room : MonoBehaviour
 
     public Transform[] _corners;
     Rect _footprint;
-    
+
+    bool _doorsLocekd = false;
+
     public void calculateFootPrint()
     {
         _footprint = new Rect(_corners[0].position.x, _corners[0].position.z,
@@ -101,6 +103,7 @@ public class Room : MonoBehaviour
 
     public void toggleDoorLocks()
     {
+        _doorsLocekd = !_doorsLocekd;
         for (int i = 0; i < _walls.Count; i++)
         {
             _walls[i].toggleDoorLocks();
@@ -114,7 +117,8 @@ public class Room : MonoBehaviour
             _enemySpawns[i].spawn(this);
             _enemyCount++;
         }
-
-        toggleDoorLocks();
+        
+        if(!_doorsLocekd)
+            toggleDoorLocks();
     }
 }
