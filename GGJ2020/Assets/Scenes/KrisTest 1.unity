@@ -440,6 +440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 4234046708120612766, guid: 1a03154fb95534e498c125d8ffac80e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a03154fb95534e498c125d8ffac80e4, type: 3}
 --- !u!1001 &589697425704535397
