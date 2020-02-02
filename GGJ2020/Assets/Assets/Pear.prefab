@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 4234046707664251397}
   - component: {fileID: 4234046707664251394}
   - component: {fileID: 4234046707664251395}
+  - component: {fileID: 2117768525}
   m_Layer: 0
   m_Name: Pear
   m_TagString: Player
@@ -178,7 +179,7 @@ MonoBehaviour:
   pCamera: {fileID: 4234046707855907083}
   pController: {fileID: 4234046707664251397}
   m_AttackPower: 1
-  m_Health: 3
+  m_Health: 100
   m_Armour: 0
   m_SpeedBoost: 0
   m_JumpBoost: 0
@@ -201,6 +202,20 @@ MonoBehaviour:
     type: 3}
   m_Spring: {fileID: 2244611689627672686, guid: 70686ab99e8fce6409faf33fc6552575,
     type: 3}
+--- !u!136 &2117768525
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234046707664251393}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.31
+  m_Height: 2.53
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4234046707760127964
 GameObject:
   m_ObjectHideFlags: 0
