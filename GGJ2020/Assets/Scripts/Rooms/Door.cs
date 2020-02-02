@@ -7,9 +7,10 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        m_Source = gameObject.AddComponent<AudioSource>();
+      
     }
-
+    private AudioSource m_Source;
     public GameObject model;
     public Wall _wall;
 
@@ -32,6 +33,8 @@ public class Door : MonoBehaviour
 
     public void toggleLockDoor()
     {
+        AudioClip clip = Resources.Load("Sounds/Door_Close") as AudioClip;
+        m_Source.PlayOneShot(clip, 0.05f);
         _timer = 0.0f;
         _locked = !_locked;
     }
