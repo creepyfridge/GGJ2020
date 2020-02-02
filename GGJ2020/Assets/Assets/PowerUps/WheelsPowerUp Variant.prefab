@@ -25,6 +25,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462c65852df9bde4c8507013d1d1c9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7253274541765914277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4162622995262023221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b437b69ee3eb2614eae16b0704d72362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _percentChanceToDespawn: 75
 --- !u!1001 &5396850128654466876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,7 +108,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 70bf159382b2a7d459e081c702faaef4,
         type: 3}
       propertyPath: m_Name
-      value: WheelsPowerUp Variant (2)
+      value: WheelsPowerUp Variant
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 70bf159382b2a7d459e081c702faaef4,
         type: 3}

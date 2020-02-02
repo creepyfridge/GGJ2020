@@ -25,6 +25,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10549807980a5dd45a4190635077188c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5219560716384220487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137376542203003133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b437b69ee3eb2614eae16b0704d72362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _percentChanceToDespawn: 85
 --- !u!1001 &8271390864156400116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,7 +108,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 8f014ba34ab87f547ae491b3387142de,
         type: 3}
       propertyPath: m_Name
-      value: PencilPowerUp Variant (4)
+      value: PencilPowerUp Variant
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 8f014ba34ab87f547ae491b3387142de,
         type: 3}

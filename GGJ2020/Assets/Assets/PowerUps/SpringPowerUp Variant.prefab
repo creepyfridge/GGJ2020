@@ -13,6 +13,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.43, y: 1.52, z: 1.7779691}
   m_Center: {x: 0, y: -0.00000005960466, z: 0.7795704}
+--- !u!114 &-2949710374562053174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690895670963352752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b437b69ee3eb2614eae16b0704d72362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _percentChanceToDespawn: 80
 --- !u!114 &8498948871503009163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 9122539213614779465, guid: 70686ab99e8fce6409faf33fc6552575,
         type: 3}
       propertyPath: m_Name
-      value: SpringPowerUp
+      value: SpringPowerUp Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9122539213614779465, guid: 70686ab99e8fce6409faf33fc6552575,
         type: 3}

@@ -8,14 +8,19 @@ public class PowerUpBase : MonoBehaviour
 
     // Update is called once per frame
     Vector3 newPos;
-    Vector3 newRot;
+    float firstY;
+
+    private void Start()
+    {
+        firstY = transform.position.y;
+    }
 
     void Update()
     {
         if (_timer < 0)
         {
             
-            newPos = new Vector3(transform.position.x, Random.Range(-1, 2), transform.position.z);
+            newPos = new Vector3(transform.position.x, Random.Range(firstY, firstY + 1), transform.position.z);
             _timer = 1f;
         }
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);

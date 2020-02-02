@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7854837914683261522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262557292096810846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b09601bddd1fb408d1510851b2be56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &6905356158257390204
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25,6 +13,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.86, y: 1.24, z: 1.08}
   m_Center: {x: -0.35343987, y: 0.000000044703484, z: 0}
+--- !u!114 &7854837914683261522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262557292096810846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b09601bddd1fb408d1510851b2be56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4646057127934687629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262557292096810846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b437b69ee3eb2614eae16b0704d72362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _percentChanceToDespawn: 50
 --- !u!1001 &5155514448455709298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 4911416617097157932, guid: af06b785d828da7439ddc808bcaf2140,
         type: 3}
       propertyPath: m_Name
-      value: RazorPowerUp
+      value: RazorPowerUp Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af06b785d828da7439ddc808bcaf2140, type: 3}
