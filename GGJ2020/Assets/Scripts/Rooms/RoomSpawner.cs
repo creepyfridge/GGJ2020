@@ -32,51 +32,69 @@ public class RoomSpawner : MonoBehaviour
 
     void spawnRoom()
     {
-        //pick spawnDoor
-        int roomId = pseudoRandomID();
-        int wallID = _rooms[roomId].getPotentialWall();
-        int doorID = _rooms[roomId]._walls[wallID].getPotentialDoor();
-
-        //pick new Room
-        GameObject newRoomObject = GameObject.Instantiate(_roomPrefabs[UnityEngine.Random.Range(0, _roomPrefabs.Count)]);
-        newRoomObject.transform.rotation = Quaternion.Euler(Vector3.zero);
-
-        Room newRoom = newRoomObject.GetComponentInChildren<Room>();
-
-        int newWallID = newRoom.getPotentialWall();
-        int newDoorID = newRoom._walls[newWallID].getPotentialDoor();
-
-        GameObject pivot = GameObject.Instantiate(_pivot);
-
-
-        //move pivot to door
-        pivot.transform.position = newRoom._walls[newWallID]._doors[newDoorID].transform.position;
-        //make room child of pivot
-        newRoomObject.transform.parent = pivot.transform;
-
-        //place/rotate the room
         bool isColliding = false;
-        for (int i = 0; i < 360; i += 90)
+        GameObject pivot = null;
+        int roomId = -1;
+        int wallID = -1;
+        int doorID = -1;
+        Room newRoom = null;
+        int newWallID = -1;
+        int newDoorID = -1;
+        do
         {
-            pivot.transform.rotation = Quaternion.Euler(new Vector3(0.0f, (float)i, 0.0f));
-            pivot.transform.position = _rooms[roomId]._walls[wallID]._doors[doorID].transform.position;
-            newRoom.calculateFootPrint();
-            isColliding = false;
-
-            for (int j = 0; j < _rooms.Count && !isColliding; j++)
+            //pick spawnDoor
+            roomId = pseudoRandomID();
+            wallID = _rooms[roomId].getPotentialWall();
+            doorID = _rooms[roomId]._walls[wallID].getPotentialDoor();
+ 
+            if (pivot == null)
             {
-                if (newRoom.isColliding(_rooms[j]))
+                //pick new Room
+                GameObject newRoomObject = GameObject.Instantiate(_roomPrefabs[UnityEngine.Random.Range(0, _roomPrefabs.Count)]);
+                newRoomObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+                newRoom = newRoomObject.GetComponentInChildren<Room>();
+
+                newWallID = newRoom.getPotentialWall();
+                newDoorID = newRoom._walls[newWallID].getPotentialDoor();
+
+                pivot = GameObject.Instantiate(_pivot);
+
+
+                //move pivot to door
+                pivot.transform.position = newRoom._walls[newWallID]._doors[newDoorID].transform.position;
+                //make room child of pivot
+                newRoomObject.transform.parent = pivot.transform;
+            }
+            //place/rotate the room
+            
+            for (int i = 0; i < 360; i += 90)
+            {
+                pivot.transform.rotation = Quaternion.Euler(new Vector3(0.0f, (float)i, 0.0f));
+                pivot.transform.position = _rooms[roomId]._walls[wallID]._doors[doorID].transform.position;
+                newRoom.calculateFootPrint();
+                isColliding = false;
+
+                for (int j = 0; j < _rooms.Count && !isColliding; j++)
                 {
-                    isColliding = true;
+                    if (newRoom.isColliding(_rooms[j]))
+                    {
+                        isColliding = true;
+                    }
                 }
+
+                if(!isColliding)
+                    break;
+            }
+
+            if(isColliding)
+            {
+                _rooms[roomId]._walls[wallID]._doors[doorID].hideModel();
             }
         }
+        while (isColliding);
 
-        if (isColliding)
-        {
-            GameObject.Destroy(pivot);
-        }
-        else
+        
         {
             _rooms.Add(newRoom);
             _rooms[roomId].setActiveDoor(wallID, doorID);
