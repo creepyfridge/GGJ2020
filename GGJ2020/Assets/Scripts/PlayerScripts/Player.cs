@@ -258,36 +258,37 @@ public class Player : MonoBehaviour
     private void moveState()
     {
 
-            Vector3 camForward = pCamera.transform.forward;
-            camForward.y = 0;
-            camForward = Vector3.Normalize(camForward);
-            pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
-            m_Direction = Vector3.zero;
-            //Input for Dashing
+        Vector3 camForward = pCamera.transform.forward;
+        camForward.y = 0;
+        camForward = Vector3.Normalize(camForward);
+        pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
+          
+        m_Direction = Vector3.zero;
+        //Input for Dashing
             
-            //Movement Input
-            if (InputManager.getMoveForward())
-            {
-                m_Direction += camForward * 1;
-            }
-            if (InputManager.getMoveLeft())
-            {
-                m_Direction += (pCamera.transform.right * -1);
-            }
-            if (InputManager.getMoveBack())
-            {
-                m_Direction += (camForward * -1);
-            }
-            if (InputManager.getMoveRight())
-            {
-                m_Direction += pCamera.transform.right * 1;
-            }
+        //Movement Input
+        if (InputManager.getMoveForward())
+        {
+            m_Direction += camForward * 1;
+        }
+        if (InputManager.getMoveLeft())
+        {
+            m_Direction += (pCamera.transform.right * -1);
+        }
+        if (InputManager.getMoveBack())
+        {
+            m_Direction += (camForward * -1);
+        }
+        if (InputManager.getMoveRight())
+        {
+            m_Direction += pCamera.transform.right * 1;
+        }
             
-            //Normalize the direction
+        //Normalize the direction
             
 
-            //Get Velocity of the player
-            m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
+        //Get Velocity of the player
+        m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
         if(!isGrounded())
         {
             m_Velocity.y -= m_Gravity * Time.deltaTime;
