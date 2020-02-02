@@ -39,6 +39,7 @@ public class PlayerPowers : MonoBehaviour
 
         GameObject pencil = Instantiate(m_Pencil, m_Player.transform, false);
         pencil.transform.rotation = pencilRot;
+        pencil.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     public void addSpring()
