@@ -24,9 +24,14 @@ public class Door : MonoBehaviour
 
     [HideInInspector]
     public bool isValidSpawn = true;
+    [HideInInspector]
+    public bool isActiveDoor = false;
 
     public void hideModel()
     {
+        if (isActiveDoor)
+            return;
+
         isValidSpawn = false;
         model.SetActive(false);
     }
@@ -41,6 +46,7 @@ public class Door : MonoBehaviour
 
     public void showModel()
     {
+        isActiveDoor = true;
         isValidSpawn = false;
         model.SetActive(true);
     }

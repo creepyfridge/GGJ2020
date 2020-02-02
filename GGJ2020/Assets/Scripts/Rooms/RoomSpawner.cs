@@ -92,7 +92,7 @@ public class RoomSpawner : MonoBehaviour
             }
 
             if (isColliding)
-            {
+            {                
                 _rooms[roomId]._walls[wallID]._doors[doorID].hideModel();
             }
         }
