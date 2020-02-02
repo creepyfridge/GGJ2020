@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /**
  * Made by Zach Dubuc 
  * 
@@ -20,14 +21,16 @@ public class Player : MonoBehaviour
     float dashTimer = 0;
     const float DASH_TIMER = 3f;
     //Power up stats
-    public float m_AttackPower = 1f;
+    public int m_AttackPower = 1;
     public int m_Health = 100;
     public bool m_Armour = false;
     public float m_SpeedBoost = 0f;
     public float m_JumpBoost = 0f;
 
     bool isDashing = false;
-
+    bool m_IgnoreGrounded = false;
+    int m_IgnoreFrames = 30;
+    int m_FrameCount = 0;
     private State m_CurrentState;
     enum State
     {
@@ -47,6 +50,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(m_Health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
         if (isGrounded())
         {
             //get the cameras forward vector
@@ -55,8 +62,8 @@ public class Player : MonoBehaviour
             camForward = Vector3.Normalize(camForward);
             if(m_Velocity != Vector3.zero)
             {
-                pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime);
-                pController.transform.forward = m_Direction;
+                pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
+               //pController.transform.forward = m_Direction;
             }
 
             //Vector3 dir = Vector3.zero;
@@ -88,7 +95,19 @@ public class Player : MonoBehaviour
             m_Direction = Vector3.Normalize(m_Direction);
 
             m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
-            m_Velocity.y = 0;
+            if(!m_IgnoreGrounded)
+            {
+                m_Velocity.y = 0;
+            }
+            else
+            {
+                m_FrameCount++;
+                if(m_FrameCount > m_IgnoreFrames)
+                {
+                    m_IgnoreGrounded = false;
+                    m_FrameCount = 0;
+                }
+            } 
 
             if (InputManager.getJumpDown())
             {
@@ -100,7 +119,6 @@ public class Player : MonoBehaviour
         {
             m_Velocity.y -= m_Gravity * Time.deltaTime;
         }
-
         if (m_DashBoost > 0)
         {
             m_DashBoost -= 2f;
@@ -124,6 +142,7 @@ public class Player : MonoBehaviour
     {
         if(isGrounded())
         {
+            m_IgnoreGrounded = true;
             m_Velocity.y = 0;
             m_Velocity.y += m_JumpVelocity;
         }
@@ -154,13 +173,26 @@ public class Player : MonoBehaviour
             m_DashBoost =  50f;
         }
     }
+    public void knockback(Vector3 knockbackDir)
+    {
+        float timer = 2f;
+        m_Velocity = knockbackDir * 1.25f ;
+        m_Velocity.y += 0.25f;
+        while (timer > 0)
+        {
+            
+            pController.Move(m_Velocity * Time.deltaTime);
+            timer -= Time.deltaTime;
+        }
+        
+    }
 
     public void addSpeed(float speed)
     {
         m_SpeedBoost += speed;
     }
 
-    public void addAttackPower(float attackPower)
+    public void addAttackPower(int attackPower)
     {
         m_AttackPower += attackPower;
     }
@@ -175,14 +207,39 @@ public class Player : MonoBehaviour
         m_JumpBoost += amount;
     }
 
-   /* public void OnCollisionEnter(Collision collision)
+    public void takeDamage(Vector3 knockbackDir)
     {
-        GameObject obj = collision.gameObject;
+        m_Health -= 12;
+        knockback(knockbackDir);
+    }
 
-        //if(obj.GetType() == typeof( EnemyBase))
+    public int dealDamage()
+    {
+        if(isDashing)
         {
-
+            Debug.Log("Pear did " + m_AttackPower + " damage!");
+            return m_AttackPower;
         }
-    } */
+        return 0;
+        
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if (isDashing)
+            {
+                EnemyBase enemy = other.gameObject.GetComponent("EnemyBase") as EnemyBase;
+
+                if (enemy != null)
+                {
+                    enemy.takeDamage(m_AttackPower);
+                }
+            }
+        }
+        
+    } 
 
 }

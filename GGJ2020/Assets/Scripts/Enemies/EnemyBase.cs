@@ -29,6 +29,7 @@ public class EnemyBase : MonoBehaviour
 
     public float _attackTime = 0.5f;
     public int _damage = 10;
+    public int _health = 10;
 
     public Transform _saw;
     public Transform _sawRest;
@@ -46,6 +47,10 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         Debug.Log(_state);
         switch(_state)
         {
@@ -156,5 +161,26 @@ public class EnemyBase : MonoBehaviour
         bool didHit = Physics.Raycast(transform.position, _player.position - transform.position, out hit);
         Debug.DrawLine(transform.position, hit.point);
         return didHit;
+    }
+
+    public void takeDamage(int amount)
+    {
+        _health -= amount;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Player player = collision.gameObject.GetComponent("Player") as Player;
+
+                if (player != null)
+                {
+                takeDamage(player.dealDamage());
+                }
+            }
+        
+
     }
 }
