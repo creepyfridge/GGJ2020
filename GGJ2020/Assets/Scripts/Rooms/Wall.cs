@@ -32,7 +32,8 @@ public class Wall : MonoBehaviour
             else
                 _doors[i].showModel();
         }
-        _blankWall.SetActive(false);
+        if(_blankWall!=null)
+            _blankWall.SetActive(false);
     }
 
     public int getPotentialDoor()
