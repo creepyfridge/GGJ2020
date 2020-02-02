@@ -3036,6 +3036,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5572556246661115244}
     m_Modifications:
+    - target: {fileID: -7673999678244370971, guid: ff87bdfd1909872448ad4b0c4c554b9d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: edd4defba2c9515449937d6642ff6633, type: 2}
     - target: {fileID: -4216859302048453862, guid: ff87bdfd1909872448ad4b0c4c554b9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3101,11 +3106,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1389157037694621049, guid: ff87bdfd1909872448ad4b0c4c554b9d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 083796818cd89fd43add3145a1fc1952, type: 2}
     - target: {fileID: -927199367670048503, guid: ff87bdfd1909872448ad4b0c4c554b9d,
         type: 3}
       propertyPath: m_Name
       value: JobRoom
       objectReference: {fileID: 0}
+    - target: {fileID: -857622760253741516, guid: ff87bdfd1909872448ad4b0c4c554b9d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b013c69f1ac6cd4a83c182afb0be859, type: 2}
+    - target: {fileID: 6720019381798484065, guid: ff87bdfd1909872448ad4b0c4c554b9d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77c533ab251c73f46a59bc84223b640f, type: 2}
+    - target: {fileID: 7591513377862556364, guid: ff87bdfd1909872448ad4b0c4c554b9d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b013c69f1ac6cd4a83c182afb0be859, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff87bdfd1909872448ad4b0c4c554b9d, type: 3}
 --- !u!1 &4038019432634312930 stripped
