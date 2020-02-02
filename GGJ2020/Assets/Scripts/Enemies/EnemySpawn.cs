@@ -17,10 +17,12 @@ public class EnemySpawn : MonoBehaviour
 
     public GameObject _enemyPrefab;
 
-    public GameObject spawn()
+    public GameObject spawn(Room room)
     {
         GameObject enemy = GameObject.Instantiate(_enemyPrefab, transform.position, _enemyPrefab.transform.rotation);
-        enemy.GetComponent<EnemyBase>()._player = _player.transform;
+        EnemyBase ebase = enemy.GetComponent<EnemyBase>();
+        ebase._player = _player.transform;
+        ebase._Room = room;
         return enemy;
     }
 }

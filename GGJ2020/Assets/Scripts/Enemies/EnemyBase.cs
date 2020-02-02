@@ -44,7 +44,7 @@ public class EnemyBase : MonoBehaviour
 
     public NavMeshAgent _agent;
 
-    private Room _Room;
+    public Room _Room;
 
     // Update is called once per frame
     void Update()
@@ -172,13 +172,5 @@ public class EnemyBase : MonoBehaviour
     public void takeDamage(int amount)
     {
         _health -= amount;
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Room"))
-        {
-            _Room = other.GetComponent(typeof(Room)) as Room;
-        }
     }
 }

@@ -60,10 +60,6 @@ public class Room : MonoBehaviour
         {
             _playerIsInside = false;
         }
-        else if (other.CompareTag("Enemy"))
-        {
-            
-        }
     }
 
     public void killEnemy()
@@ -115,7 +111,7 @@ public class Room : MonoBehaviour
     {
         for (int i = 0; i < _enemySpawns.Count; i++)
         {
-            _enemySpawns[i].spawn();
+            _enemySpawns[i].spawn(this);
             _enemyCount++;
         }
 
