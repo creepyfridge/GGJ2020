@@ -8109,7 +8109,7 @@ GameObject:
   - component: {fileID: 5572556246661115244}
   - component: {fileID: 8867283897659449214}
   - component: {fileID: 8867283897659449209}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RoomWithArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
