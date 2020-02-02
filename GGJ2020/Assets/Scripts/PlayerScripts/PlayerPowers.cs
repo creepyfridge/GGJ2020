@@ -12,7 +12,7 @@ public class PlayerPowers : MonoBehaviour
 
     public void addWheels()
     {
-        m_Player.addSpeed(8f);
+        m_Player.addSpeed(4f);
 
         m_Wheels.SetActive(true);
     }
@@ -33,7 +33,7 @@ public class PlayerPowers : MonoBehaviour
     public void addPencil()
     {
         m_Player.addAttackPower(2);
-        m_Player.addSpeed(-2);
+        m_Player.addSpeed(-1);
         m_Player.addJumpHeight(-1);
         Quaternion pencilRot = new Quaternion(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f), 0);
 

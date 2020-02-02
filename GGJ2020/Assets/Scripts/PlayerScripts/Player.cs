@@ -13,20 +13,19 @@ public class Player : MonoBehaviour
     public float m_Speed;
     public Camera pCamera;
     private float m_Gravity = 10f;
-    Vector3 lastVelocity = new Vector3();
     public CharacterController pController;
     const float SPEED = 8f;
     float m_DashBoost = 0f;
     float m_JumpVelocity = 10f;
     float dashTimer = 0;
-    const float DASH_TIMER = 3f;
+    const float DASH_TIMER = 1.5f;
     //Power up stats
     public int m_AttackPower = 1;
     public int m_Health = 100;
     public bool m_Armour = false;
     public float m_SpeedBoost = 0f;
     public float m_JumpBoost = 0f;
-
+    private float m_VelUp;
     bool isDashing = false;
     bool m_IgnoreGrounded = false;
     int m_IgnoreFrames = 30;
@@ -63,10 +62,14 @@ public class Player : MonoBehaviour
             if(m_Velocity != Vector3.zero)
             {
                 pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
-               //pController.transform.forward = m_Direction;
+                m_VelUp += Time.deltaTime;
+                if (m_VelUp > 2)
+                {
+                    m_VelUp = 2;
+                }
             }
+          
 
-            //Vector3 dir = Vector3.zero;
             if(!isDashing)
             {
                 m_Direction = Vector3.zero;
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour
                 m_Direction += pCamera.transform.right * 1;
             }
             m_Direction = Vector3.Normalize(m_Direction);
-
+            
             m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
             if(!m_IgnoreGrounded)
             {
@@ -109,9 +112,12 @@ public class Player : MonoBehaviour
                 }
             } 
 
-            if (InputManager.getJumpDown())
+            if (InputManager.getJumpDown() && !isDashing)
             {
                 m_Velocity.y += 5.5f + m_JumpBoost;
+                m_Velocity.z = (m_Velocity.z / 1.75f);
+                m_Velocity.x = (m_Velocity.x / 1.75f);
+
             }
             
         }
@@ -170,7 +176,7 @@ public class Player : MonoBehaviour
                 m_Direction = direction;
             }
             dashTimer = DASH_TIMER;
-            m_DashBoost =  25f;
+            m_DashBoost =  30f;
         }
     }
     public void knockback(Vector3 knockbackDir)
@@ -213,28 +219,23 @@ public class Player : MonoBehaviour
         knockback(knockbackDir);
     }
 
-    public int dealDamage()
-    {
-        if(isDashing)
-        {
-            Debug.Log("Pear did " + m_AttackPower + " damage!");
-            return m_AttackPower;
-        }
-        return 0;
-        
-    }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (isDashing)
         {
-            if (isDashing)
+            isDashing = false;
+            m_DashBoost = 0;
+            if (other.CompareTag("Enemy"))
             {
+            
+                
                 EnemyBase enemy = other.GetComponent("EnemyBase") as EnemyBase;
 
                 if (enemy != null)
                 {
                     enemy.takeDamage(m_AttackPower);
+                    Debug.Log("Did " + m_AttackPower + " Damage!");
                 }
             }
         }
