@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4848337670919144681}
   - component: {fileID: 4848337670919144686}
   - component: {fileID: 4848337670919144687}
+  - component: {fileID: 4567065030352195401}
   m_Layer: 0
   m_Name: SawBa
   m_TagString: Enemy
@@ -146,6 +147,20 @@ MonoBehaviour:
   _flashMat: {fileID: 2100000, guid: 2d3fb762d587d324097c5e7b60f42ec4, type: 2}
   _renderer: {fileID: 4848337670919144680}
   _agent: {fileID: 4848337670919144686}
+--- !u!136 &4567065030352195401
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848337670919144684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.55
+  m_Height: 0
+  m_Direction: 1
+  m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
 --- !u!1 &4848337670922749347
 GameObject:
   m_ObjectHideFlags: 0

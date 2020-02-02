@@ -44,12 +44,18 @@ public class EnemyBase : MonoBehaviour
 
     public NavMeshAgent _agent;
 
+    private Room _Room;
+
     // Update is called once per frame
     void Update()
     {
         if(_health <= 0)
         {
-            Destroy(this.gameObject);
+            if(_Room != null)
+            {
+                _Room.killEnemy();
+            }
+            Destroy(this);
         }
         Debug.Log(_state);
         switch(_state)
@@ -168,19 +174,11 @@ public class EnemyBase : MonoBehaviour
         _health -= amount;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                Player player = collision.gameObject.GetComponent("Player") as Player;
-
-                if (player != null)
-                {
-                takeDamage(player.dealDamage());
-                }
-            }
-        
-
+        if(other.CompareTag("Room"))
+        {
+            _Room = other.GetComponent(typeof(Room)) as Room;
+        }
     }
 }

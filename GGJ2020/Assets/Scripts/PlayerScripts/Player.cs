@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
                 m_Direction = direction;
             }
             dashTimer = DASH_TIMER;
-            m_DashBoost =  50f;
+            m_DashBoost =  25f;
         }
     }
     public void knockback(Vector3 knockbackDir)
@@ -226,12 +226,11 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-       
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
             if (isDashing)
             {
-                EnemyBase enemy = other.gameObject.GetComponent("EnemyBase") as EnemyBase;
+                EnemyBase enemy = other.GetComponent("EnemyBase") as EnemyBase;
 
                 if (enemy != null)
                 {
