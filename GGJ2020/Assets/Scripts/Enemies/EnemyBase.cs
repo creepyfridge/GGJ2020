@@ -46,6 +46,8 @@ public class EnemyBase : MonoBehaviour
 
     public Room _Room;
 
+    public AudioSource m_Source;
+    bool _AttackSound = false;
     // Update is called once per frame
     void Update()
     {
@@ -96,6 +98,9 @@ public class EnemyBase : MonoBehaviour
                     _timer = 0.0f;
                 }
             }
+
+            AudioClip clip = Resources.Load("Sounds/Roomba_Move") as AudioClip;
+            m_Source.PlayOneShot(clip, 0.01f);
         }
         else
         {
@@ -113,10 +118,19 @@ public class EnemyBase : MonoBehaviour
         {
             _state = states.Default;
         }
+        m_Source.Stop();
     }
 
     void stateChargingAttack()
     {
+        if(!_AttackSound)
+        {
+            m_Source.Stop();
+            AudioClip clip = Resources.Load("Sounds/Roomba_Attack") as AudioClip;
+            m_Source.PlayOneShot(clip, 0.6f);
+            _AttackSound = true;
+        }
+        
         _agent.SetDestination(transform.position);
 
         _timer += Time.deltaTime;
@@ -133,12 +147,12 @@ public class EnemyBase : MonoBehaviour
             if (temp%2 == 0)
             {
                 _renderer.material = _normalMat;
-                Debug.Log("set normal color");
+               // Debug.Log("set normal color");
             }
             else
             {
                 _renderer.material = _flashMat;
-                Debug.Log("set flash color");
+               // Debug.Log("set flash color");
             }
         }
     }
@@ -152,13 +166,11 @@ public class EnemyBase : MonoBehaviour
         {
             _state = states.Default;
             _saw.position = _sawRest.position;
+            _AttackSound = false;
         }
 
         if(_timer < _attackTime)
             _saw.position = _sawRest.position + ((_sawAttack.position - _sawRest.position) * (_timer/_attackTime));
-
-
-
     }
 
     bool isPlayerVisible()

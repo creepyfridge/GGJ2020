@@ -16,9 +16,9 @@ public class Player : MonoBehaviour
     public CharacterController pController;
     const float SPEED = 8f;
     float m_DashBoost = 0f;
-    float m_JumpVelocity = 10f;
+    float m_JumpVelocity = 4f;
     float dashTimer = 0;
-    const float DASH_TIMER = 1.5f;
+    const float DASH_TIMER = 1.75f;
     //Power up stats
     public int m_AttackPower = 1;
     public int m_Health = 100;
@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     bool m_IgnoreGrounded = false;
     int m_IgnoreFrames = 30;
     int m_FrameCount = 0;
+
+    // For audio
+    private AudioClip m_Clip;
+    public AudioSource m_Source;
     private State m_CurrentState;
     enum State
     {
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
         m_Direction = Vector3.zero;
         m_CurrentState = State.Idle;
         m_Velocity = Vector3.zero;
+        //m_Source = GetComponent(typeof(AudioSource)) as AudioSource;
     }
 
     // Update is called once per frame
@@ -53,13 +58,49 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+        if (dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+        }
+        if (m_IgnoreGrounded)
+        {
+            m_FrameCount++;
+            if (m_FrameCount > m_IgnoreFrames)
+            {
+                m_IgnoreGrounded = false;
+                m_FrameCount = 0;
+            }
+        }
+        
+
+        switch (m_CurrentState)
+        {
+            case State.Idle:
+                idleState();
+                break;
+            case State.Moving:
+                moveState();
+                break;
+            case State.Dashing:
+                dashState();
+                break;
+            case State.Jumping:
+                jumpState();
+                break;
+        }
+
+        if (!isGrounded() && m_CurrentState != State.Jumping)
+        {
+            m_Velocity.y -= m_Gravity * Time.deltaTime;
+            pController.Move(m_Velocity * Time.deltaTime);
+        }/*
         if (isGrounded())
         {
             //get the cameras forward vector
             Vector3 camForward = pCamera.transform.forward;
             camForward.y = 0;
             camForward = Vector3.Normalize(camForward);
-            if(m_Velocity != Vector3.zero)
+           /* if(m_Velocity != Vector3.zero)
             {
                 pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
                 m_VelUp += Time.deltaTime;
@@ -142,21 +183,24 @@ public class Player : MonoBehaviour
             dashTimer -= Time.deltaTime;
         }
 
-        pController.Move(m_Velocity * Time.deltaTime);
+        pController.Move(m_Velocity * Time.deltaTime); */
     }
+
+
     public void jump()
     {
         if(isGrounded())
         {
             m_IgnoreGrounded = true;
-            m_Velocity.y = 0;
             m_Velocity.y += m_JumpVelocity;
+            m_CurrentState = State.Jumping;
+            Debug.Log("Changing to Jump State");
         }
         
     }
     public bool isGrounded()
     {
-       if( Physics.Raycast(transform.position, Vector3.down, 1.4f))
+       if( Physics.Raycast(transform.position, Vector3.down, 1.4f) && !m_IgnoreGrounded)
         {
             return true;
         }
@@ -177,7 +221,127 @@ public class Player : MonoBehaviour
             }
             dashTimer = DASH_TIMER;
             m_DashBoost =  30f;
+            m_CurrentState = State.Dashing;
         }
+    }
+
+    private void idleState()
+    {
+        
+        if(InputManager.getDashDown())
+        {
+            Dash();
+            return;
+        } else if(InputManager.getJumpDown())
+        {
+            jump();
+            return;
+        } else if(InputManager.getMoveForwardDown() || InputManager.getMoveBackDown() || InputManager.getMoveLeftDown() || InputManager.getMoveRightDown())
+        {
+            m_CurrentState = State.Moving;
+        }
+
+        if(!isGrounded())
+        {
+            m_Velocity.y -= m_Gravity * Time.deltaTime;
+        }
+        else
+        {
+            m_Velocity = Vector3.zero;
+        }
+
+        pController.Move(m_Velocity * Time.deltaTime);
+    }
+    private void moveState()
+    {
+            Vector3 camForward = pCamera.transform.forward;
+            camForward.y = 0;
+            camForward = Vector3.Normalize(camForward);
+            pController.transform.forward = Vector3.Slerp(pController.transform.forward, m_Direction, Time.deltaTime * 5f);
+            m_Direction = Vector3.zero;
+            //Input for Dashing
+            
+            //Movement Input
+            if (InputManager.getMoveForward())
+            {
+                m_Direction += camForward * 1;
+            }
+            if (InputManager.getMoveLeft())
+            {
+                m_Direction += (pCamera.transform.right * -1);
+            }
+            if (InputManager.getMoveBack())
+            {
+                m_Direction += (camForward * -1);
+            }
+            if (InputManager.getMoveRight())
+            {
+                m_Direction += pCamera.transform.right * 1;
+            }
+            
+            //Normalize the direction
+            // m_Direction = Vector3.Normalize(m_Direction);
+
+            //Get Velocity of the player
+            m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
+            if (InputManager.getDashDown() && isGrounded())
+            {
+                Dash();
+                Debug.Log("Chaning to Dash State");
+                //return;
+            }
+            if (InputManager.getJumpDown())
+            {
+                jump();
+            }
+        //If there is no velocity then the player isn't moving, set to idle state
+        if (m_Velocity == Vector3.zero)
+        {
+            Debug.Log("Chaning to Idle State");
+            m_CurrentState = State.Idle;
+        }
+
+        pController.Move(m_Velocity * Time.deltaTime);
+    }
+    private void jumpState()
+    {
+        Debug.Log(m_Velocity);
+        if (isGrounded())
+        {
+            Debug.Log("Changing to moving State");
+            m_CurrentState = State.Moving;
+            return;
+        }
+        else
+        {
+            m_Velocity.y -= m_Gravity * Time.deltaTime;
+          /*  m_Velocity.z /= 1.2f;
+            m_Velocity.x /= 1.2f; */
+        }
+
+        pController.Move(m_Velocity * Time.deltaTime);
+        
+    }
+    private void dashState()
+    {
+        m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
+
+        if (m_DashBoost > 0)
+        {
+            m_DashBoost -= 2f;
+            if (m_DashBoost < 0)
+            {
+                m_DashBoost = 0;
+            }
+        }
+        else
+        {
+            isDashing = false;
+            Debug.Log("Chaning to Moving State");
+            m_CurrentState = State.Moving;
+        }
+        
+        pController.Move(m_Velocity * Time.deltaTime);
     }
     public void knockback(Vector3 knockbackDir)
     {
@@ -215,6 +379,8 @@ public class Player : MonoBehaviour
 
     public void takeDamage(Vector3 knockbackDir)
     {
+        m_Clip = Resources.Load("Sounds/Pear_Damage") as AudioClip;
+        m_Source.PlayOneShot(m_Clip);
         m_Health -= 12;
         knockback(knockbackDir);
     }
