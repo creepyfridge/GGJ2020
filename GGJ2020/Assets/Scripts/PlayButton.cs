@@ -9,6 +9,7 @@ public class PlayButton : MonoBehaviour
     public void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     public void Play()
