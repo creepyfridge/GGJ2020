@@ -46295,6 +46295,12 @@ PrefabInstance:
       propertyPath: m_Source
       value: 
       objectReference: {fileID: 908474826}
+    - target: {fileID: 4234046707664251395, guid: 1a03154fb95534e498c125d8ffac80e4,
+        type: 3}
+      propertyPath: m_Pencil
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: 8f014ba34ab87f547ae491b3387142de,
+        type: 3}
     - target: {fileID: 4234046708034283276, guid: 1a03154fb95534e498c125d8ffac80e4,
         type: 3}
       propertyPath: m_LocalPosition.x

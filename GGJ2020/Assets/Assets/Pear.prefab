@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Armour: 0
   m_SpeedBoost: 0
   m_JumpBoost: 0
+  m_Source: {fileID: 0}
 --- !u!114 &4234046707664251395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,13 +321,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4234046707855907080}
-  m_LocalRotation: {x: 0.17126714, y: 0, z: 0, w: 0.98522466}
-  m_LocalPosition: {x: 0, y: 1.85, z: -4.07}
+  m_LocalRotation: {x: 0.25557882, y: -0, z: -0, w: 0.96678823}
+  m_LocalPosition: {x: 0, y: 2.59, z: -3.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4234046708034283276}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 19.723001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 29.616001, y: 0, z: 0}
 --- !u!20 &4234046707855907083
 Camera:
   m_ObjectHideFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   _lerpMove: 0.0004
   _lerpLook: 0.002
   _mouseSensitivity: 3.5
+  _cameraCollisionOfset: 0.3
 --- !u!1 &4234046708003224683
 GameObject:
   m_ObjectHideFlags: 0
