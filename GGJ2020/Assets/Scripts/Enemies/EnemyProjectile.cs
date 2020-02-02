@@ -14,7 +14,7 @@ public class EnemyProjectile : MonoBehaviour
             {
                 Vector3 dir = transform.position - player.transform.position;
                 dir = Vector3.Normalize(dir);
-                player.takeDamage(-dir);
+                player.takeDamage(-dir, 20);
             }
         }
     }

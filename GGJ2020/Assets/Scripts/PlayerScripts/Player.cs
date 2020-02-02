@@ -388,11 +388,11 @@ public class Player : MonoBehaviour
         m_JumpBoost += amount;
     }
 
-    public void takeDamage(Vector3 knockbackDir)
+    public void takeDamage(Vector3 knockbackDir, int amount)
     {
         m_Clip = Resources.Load("Sounds/Pear_Damage") as AudioClip;
         m_Source.PlayOneShot(m_Clip);
-        m_Health -= 12;
+        m_Health -= amount;
         knockback(knockbackDir);
     }
 
