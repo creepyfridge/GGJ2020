@@ -10,13 +10,15 @@ public class Player : MonoBehaviour
 {
     private Vector3 m_Direction = new Vector3();
     private Vector3 m_Velocity = new Vector3();
+    private Vector3 m_LastVel = new Vector3();
     public float m_Speed;
     public Camera pCamera;
     private float m_Gravity = 10f;
     public CharacterController pController;
     const float SPEED = 8f;
     float m_DashBoost = 0f;
-    float m_JumpVelocity = 4f;
+    float m_JumpVelocity = 5.5f;
+    
     float dashTimer = 0;
     const float DASH_TIMER = 1.75f;
     //Power up stats
@@ -25,7 +27,8 @@ public class Player : MonoBehaviour
     public bool m_Armour = false;
     public float m_SpeedBoost = 0f;
     public float m_JumpBoost = 0f;
-    private float m_VelUp;
+
+    //
     bool isDashing = false;
     bool m_IgnoreGrounded = false;
     int m_IgnoreFrames = 30;
@@ -254,6 +257,7 @@ public class Player : MonoBehaviour
     }
     private void moveState()
     {
+
             Vector3 camForward = pCamera.transform.forward;
             camForward.y = 0;
             camForward = Vector3.Normalize(camForward);
@@ -280,28 +284,34 @@ public class Player : MonoBehaviour
             }
             
             //Normalize the direction
-            // m_Direction = Vector3.Normalize(m_Direction);
+            
 
             //Get Velocity of the player
             m_Velocity = m_Direction * (m_Speed + m_SpeedBoost + m_DashBoost);
-            if (InputManager.getDashDown() && isGrounded())
-            {
-                Dash();
-                Debug.Log("Chaning to Dash State");
-                //return;
-            }
-            if (InputManager.getJumpDown())
-            {
-                jump();
-            }
+        if(!isGrounded())
+        {
+            m_Velocity.y -= m_Gravity * Time.deltaTime;
+            m_Velocity.y += m_LastVel.y;
+        }
+        if (InputManager.getDashDown() && isGrounded())
+        {
+            Dash();
+            Debug.Log("Chaning to Dash State");
+            //return;
+        }
+        if (InputManager.getJumpDown())
+        {
+            jump();
+        }
         //If there is no velocity then the player isn't moving, set to idle state
         if (m_Velocity == Vector3.zero)
         {
             Debug.Log("Chaning to Idle State");
             m_CurrentState = State.Idle;
         }
-
+        
         pController.Move(m_Velocity * Time.deltaTime);
+        m_LastVel = m_Velocity;
     }
     private void jumpState()
     {

@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyBase : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
         _agent.SetDestination(_player.position);
         _lastPlayerPos = _player.position;
+        
+
     }
 
     enum states
@@ -47,7 +50,10 @@ public class EnemyBase : MonoBehaviour
     public Room _Room;
 
     public AudioSource m_Source;
+    public AudioSource m_VroomNoise;
     bool _AttackSound = false;
+
+    
     // Update is called once per frame
     void Update()
     {
@@ -98,9 +104,14 @@ public class EnemyBase : MonoBehaviour
                     _timer = 0.0f;
                 }
             }
+            if(!m_VroomNoise.isPlaying)
+            {
+                AudioClip clip = Resources.Load("Sounds/Roomba_Move") as AudioClip;
+                m_VroomNoise.clip = clip;
 
-            AudioClip clip = Resources.Load("Sounds/Roomba_Move") as AudioClip;
-            m_Source.PlayOneShot(clip, 0.01f);
+                m_VroomNoise.Play();
+            }
+            
         }
         else
         {
@@ -118,11 +129,12 @@ public class EnemyBase : MonoBehaviour
         {
             _state = states.Default;
         }
-        m_Source.Stop();
+        m_VroomNoise.Stop();
     }
 
     void stateChargingAttack()
     {
+        m_VroomNoise.Stop();
         if(!_AttackSound)
         {
             m_Source.Stop();
@@ -147,12 +159,10 @@ public class EnemyBase : MonoBehaviour
             if (temp%2 == 0)
             {
                 _renderer.material = _normalMat;
-               // Debug.Log("set normal color");
             }
             else
             {
                 _renderer.material = _flashMat;
-               // Debug.Log("set flash color");
             }
         }
     }
@@ -183,6 +193,9 @@ public class EnemyBase : MonoBehaviour
 
     public void takeDamage(int amount)
     {
+        AudioClip clip = Resources.Load("Sounds/Roomba_Damage") as AudioClip;
+        m_Source.PlayOneShot(clip, 0.6f);
+
         _health -= amount;
     }
 }
